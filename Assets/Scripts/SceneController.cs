@@ -35,8 +35,13 @@ public class SceneController : MonoBehaviour
 		Quaternion.Euler(0, 0, 0f)
 	};
 
-	List<TipoPaso> pasos = new List<TipoPaso>();		//lista que contendra los tipos de paso.
-	List<TipoPaso>.Enumerator  pasoActual;				//Con Enumerator se accede a los elementos de la lista, ya que apunta hacia ellos.
+    //La clase List<T> representa una lista de objetos fuertemente tipados los cuales se pueden acceder a traves de index.
+	List<TipoPaso> pasos = new List<TipoPaso>();		
+
+
+    //List<T>.Enumerator es una estructura que nos ayuda a movernos a traves de una lista.
+    //Se crea un objeto de tipo List<T>.Enumerator
+	List<TipoPaso>.Enumerator  pasoActual;				
 
 
 	void Start ()
@@ -58,7 +63,7 @@ public class SceneController : MonoBehaviour
 		misPuntos = 0;
 		ActualizarVidas ();
 		SumaPuntuacion (0);
-		pasos.Clear ();				//Borramos la lista de pasos.
+        pasos.Clear ();	            //El metodo publico Clear() de la clase List<T> remueve todos los elementos de la lista.			
 		ReiniciarPaso();
 	}
 
@@ -89,8 +94,8 @@ public class SceneController : MonoBehaviour
 
 	void IniciaPasos()
 	{
-		//GetEnumerator es un metodo que retorna un enumerador que recore una colección.
-		pasoActual = pasos.GetEnumerator ();		//Apunta al primer paso de la lista, la variable pasoActual es en esencia un indice.
+		//GetEnumerator retorna un objeto tipo List<T>.Enumerator, para moverse a traves de la lista.
+		pasoActual = pasos.GetEnumerator ();		
 
 	}
 
@@ -102,8 +107,8 @@ public class SceneController : MonoBehaviour
 
 	public void AddNewStep()
 	{
-		//A la lista se incluye un nuevo elemento TipoPaso, aleatorio entre 1 y 4, al inicio del juego la lista tendrá tres pasos.
-		pasos.Add ((TipoPaso)Random.Range (1, 5));		//No incluye el 5.
+        //A la lista se incluye un nuevo elemento TipoPaso(casting), aleatorio entre 1 y 4, al inicio del juego la lista tendrá tres pasos.
+		pasos.Add ((TipoPaso)Random.Range (1, 5));		
 	}
 
 	public bool MuestreElSiguientePaso(Animator animator)	//Muestra el siguiente paso, si ya se acabaron los pasos, se retorna false.
@@ -122,6 +127,7 @@ public class SceneController : MonoBehaviour
 
 			flecha.transform.rotation = PasoBase[paso];	//Se asigna a la flecha la rotación correspondiente al tipo de paso.
 
+            //Falta incluir configuracion de sonido.
 
 			return true;
 		}

@@ -6,7 +6,7 @@ public class Luz : MonoBehaviour
 {
 	public float intervaloON_OFF;		//Intervalo de tiempo entre encendido y apagado.
 	
-	private float contador;				
+    private float contador;				
 	private Light LightReference;		//Referencia al componente "Ligth".
 
 
